@@ -1,8 +1,7 @@
 import streamlit as st
 from streamlit.report_thread import get_report_ctx
-import streamlit_text_like
 
-def start_tracking(exclude_key=None):
+def start_tracking(exclude_key=None,passive_func=None):
     widget_values = {}
 
     def widget_wrapper(f, exclude_key):
@@ -39,7 +38,6 @@ def start_tracking(exclude_key=None):
     session_id = ctx.session_id
     widget_values = {'session_id': session_id}
 
-    streamlit_text_like.streamlit_text_like=widget_wrapper(streamlit_text_like.streamlit_text_like,exclude_key)
     st.button = widget_wrapper(st.button, exclude_key)
     st.slider = widget_wrapper(st.slider, exclude_key)
     st.selectbox = widget_wrapper(st.selectbox, exclude_key)

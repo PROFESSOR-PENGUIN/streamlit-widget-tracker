@@ -1,21 +1,8 @@
 import streamlit as st
-from streamlit.report_thread import get_report_ctx
-import logging
-import warnings
-import streamlit_text_like as st_like
-from __init__ import start_tracking
+from streamlit_widget_tracker import start_tracking
 
 #start tracking
 x=start_tracking(exclude_key=['is_hello','is_terr'])
-
-warnings.filterwarnings('ignore')
-logging.basicConfig(level=logging.INFO)
-ctx = get_report_ctx()
-
-st.write(f"Current session is -- {ctx.session_id}")
-r1=st_like.streamlit_text_like('He is good boy',key='is_rcb')
-st.write(r1)
-st.markdown("---")
 
 select_territory = st.sidebar.selectbox("Select Param1",["Session_id","Show all"],key='is_terr')
 select_territory = st.sidebar.selectbox(label="Select Param1", options=['a', 'b'], key='is_hello')
